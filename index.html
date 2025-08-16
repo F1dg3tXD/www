@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wacky Watch Winner</title>
+    <link rel="icon" type="image/x-icon" href="/img/icon.png">
+    <link rel="stylesheet" href="style.css">
+    <meta content="Wacky Watch Winner" property="og:title" />
+    <meta content="You won the Wacky Watch Best Character Award" property="og:description" />
+    <meta content="https://f1dg3txd.github.io/www" property="og:url" />
+    <meta content="https://f1dg3txd.github.io/www/img/icon.png" property="og:image" />
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="691">
+    <meta property="og:image:height" content="563">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image:src" content="https://f1dg3txd.github.io/www/img/icon.png">
+    <meta content="#6464b1" data-react-helmet="true" name="theme-color" />
+</head>
+
+<body>
+    <div class="game-header">
+        <h1>Wacky Watch Winner</h1>
+        <p>Congratulations on winning the Wacky Watch!</p>
+    </div>
+
+    <div class="game-display">
+        <div class="screen-content">
+            <img src="https://static.wixstatic.com/media/b48361_1040e1dd100d4b2dabdde9b7e48b96b1~mv2.png/v1/fill/w_234,h_156,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/RedCurtain%20(1).png"
+                alt="Background" class="page-background">
+            <div class="character-display">
+                <img src="https://static.wixstatic.com/media/b48361_87894ad6338343198bac29a487b8b60b~mv2.png/v1/fill/w_151,h_151,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/dfxf2pj-312ab970-6e7e-4a18-a8a3-8c534c2b3426.png"
+                    alt="Trophy" class="trophy-image">
+                <img src="https://f1dg3txd.github.io/www/KingerAppearence_Render.png" alt="Insert OC" class="oc-image">
+            </div>
+        </div>
+        <img src="https://static.wixstatic.com/media/b48361_f3bdb464107f4c6798ce1c81507510a7~mv2.png/v1/fill/w_432,h_288,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/wackywatch1%20(1).png"
+            alt="TV Frame" class="game-frame-overlay">
+    </div>
+
+    <!-- Image input field just above footer -->
+    <div class="image-url">
+        <label for="fname">Image URL:</label>
+        <input type="text" id="fname" name="fname" placeholder="Enter image URL">
+        <button id="update-image">Update</button>
+        <br><br>
+        <label for="file-upload" class="upload-label">Upload Image:</label>
+        <input type="file" id="file-upload" accept="image/*">
+    </div>
+
+    <div class="footer">
+        <p>Created by F1dg3t</p>
+    </div>
+
+    <script>
+        const input = document.getElementById("fname");
+        const button = document.getElementById("update-image");
+        const ocImage = document.querySelector(".oc-image");
+        const fileUpload = document.getElementById("file-upload");
+
+        function updateImage() {
+            const url = input.value.trim();
+            if (url) ocImage.src = url;
+        }
+
+        button.addEventListener("click", updateImage);
+        input.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") updateImage();
+        });
+
+        // Handle file upload
+        fileUpload.addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    ocImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+
+</html>
