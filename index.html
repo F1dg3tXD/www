@@ -20,37 +20,52 @@
 </head>
 
 <body>
-    <div class="game-header">
-        <h1>Wacky Watch Winner</h1>
-        <p>Congratulations on winning the Wacky Watch!</p>
+    <!-- Control panel on the left -->
+    <div class="controls">
+        <h3>Image Controls</h3>
+        <label for="scale-slider">Scale:</label>
+        <input type="range" id="scale-slider" min="0.1" max="3" step="0.1" value="1">
+
+        <label for="x-slider">Position X:</label>
+        <input type="range" id="x-slider" min="-200" max="200" step="1" value="0">
+
+        <label for="y-slider">Position Y:</label>
+        <input type="range" id="y-slider" min="-200" max="200" step="1" value="0">
     </div>
 
-    <div class="game-display">
-        <div class="screen-content">
-            <img src="https://static.wixstatic.com/media/b48361_1040e1dd100d4b2dabdde9b7e48b96b1~mv2.png/v1/fill/w_234,h_156,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/RedCurtain%20(1).png"
-                alt="Background" class="page-background">
-            <div class="character-display">
-                <img src="https://static.wixstatic.com/media/b48361_87894ad6338343198bac29a487b8b60b~mv2.png/v1/fill/w_151,h_151,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/dfxf2pj-312ab970-6e7e-4a18-a8a3-8c534c2b3426.png"
-                    alt="Trophy" class="trophy-image">
-                <img src="https://f1dg3txd.github.io/www/KingerAppearence_Render.png" alt="Insert OC" class="oc-image">
-            </div>
+    <div class="main-content">
+        <div class="game-header">
+            <h1>Wacky Watch Winner</h1>
+            <p>Congratulations on winning the Wacky Watch!</p>
         </div>
-        <img src="https://static.wixstatic.com/media/b48361_f3bdb464107f4c6798ce1c81507510a7~mv2.png/v1/fill/w_432,h_288,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/wackywatch1%20(1).png"
-            alt="TV Frame" class="game-frame-overlay">
-    </div>
 
-    <!-- Image input field just above footer -->
-    <div class="image-url">
-        <label for="fname">Image URL:</label>
-        <input type="text" id="fname" name="fname" placeholder="Enter image URL">
-        <button id="update-image">Update</button>
-        <br><br>
-        <label for="file-upload" class="upload-label">Upload Image:</label>
-        <input type="file" id="file-upload" accept="image/*">
-    </div>
+        <div class="game-display">
+            <div class="screen-content">
+                <img src="https://static.wixstatic.com/media/b48361_1040e1dd100d4b2dabdde9b7e48b96b1~mv2.png/v1/fill/w_234,h_156,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/RedCurtain%20(1).png"
+                    alt="Background" class="page-background">
+                <div class="character-display">
+                    <img src="https://static.wixstatic.com/media/b48361_87894ad6338343198bac29a487b8b60b~mv2.png/v1/fill/w_151,h_151,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/dfxf2pj-312ab970-6e7e-4a18-a8a3-8c534c2b3426.png"
+                        alt="Trophy" class="trophy-image">
+                    <img src="https://f1dg3txd.github.io/www/KingerAppearence_Render.png" alt="Insert OC" class="oc-image">
+                </div>
+            </div>
+            <img src="https://static.wixstatic.com/media/b48361_f3bdb464107f4c6798ce1c81507510a7~mv2.png/v1/fill/w_432,h_288,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/wackywatch1%20(1).png"
+                alt="TV Frame" class="game-frame-overlay">
+        </div>
 
-    <div class="footer">
-        <p>Created by F1dg3t</p>
+        <!-- Image input field just above footer -->
+        <div class="image-url">
+            <label for="fname">Image URL:</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter image URL">
+            <button id="update-image">Update</button>
+            <br><br>
+            <label for="file-upload" class="upload-label">Upload Image:</label>
+            <input type="file" id="file-upload" accept="image/*">
+        </div>
+
+        <div class="footer">
+            <p>Created by F1dg3t</p>
+        </div>
     </div>
 
     <script>
@@ -58,6 +73,10 @@
         const button = document.getElementById("update-image");
         const ocImage = document.querySelector(".oc-image");
         const fileUpload = document.getElementById("file-upload");
+
+        const scaleSlider = document.getElementById("scale-slider");
+        const xSlider = document.getElementById("x-slider");
+        const ySlider = document.getElementById("y-slider");
 
         function updateImage() {
             const url = input.value.trim();
@@ -80,6 +99,18 @@
                 reader.readAsDataURL(file);
             }
         });
+
+        // Sliders for scale and position
+        function updateTransform() {
+            const scale = scaleSlider.value;
+            const x = xSlider.value;
+            const y = ySlider.value;
+            ocImage.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+        }
+
+        scaleSlider.addEventListener("input", updateTransform);
+        xSlider.addEventListener("input", updateTransform);
+        ySlider.addEventListener("input", updateTransform);
     </script>
 </body>
 
