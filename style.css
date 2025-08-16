@@ -1,11 +1,10 @@
 body {
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;       /* Prevent horizontal scrollbars */
+    overflow-y: auto;         /* Allow vertical scrolling */
     background-color: black;
     display: flex;
-    flex-direction: column;
-    /* stack header, display, input, footer */
-    justify-content: center;
+    flex-direction: column;   /* Stack header → game-display → inputs → footer */
     align-items: center;
     min-height: 100vh;
     color: white;
